@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ page_title }}</title>
+
+    <!-- Bootstrap -->
+        <link href="style.css" rel="stylesheet">
+    <link href="theme.scss" rel="stylesheet">
+    <link href="http://demos.codexcoder.com/heal/heal-v2/assets/css/linecons-font-style.css" rel="stylesheet">
+    <link href="magnific-popup.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
+    {{ content_for_header }}
+
+    <script type="text/javascript">
+      NB.appConfig.userIsLoggedIn = {{request.logged_in?}};
+    </script>
+  </head>
+  <body class="aware-theme v2-theme {{ page.page_class_name }} page-{{ request.template | replace: '_', '-' }} js">
+
+    {% include "nav" %}
+
+    {% if site.has_header_image? and page.features_count == 0 %}
+    <div class="container-fluid header-image-container" style="padding-left:0px; padding-right:0px;">
+     <img src="{{ site.header_image_url_1026 }}" class="header-image img-responsive" border="0" />
+    </div>
+    {% endif %}
+
+    {% if page.features_count > 0 %}
+      <div class="container-fluid" style="padding-left:0px; padding-right:0px;">
+       {% include "features" %}
+      </div>
+    {% endif %}
+    
+    {% if page.is_homepage? == true %}
+    
+    <div class="home-container">
+      
+      {% if request.is_sidebar? %}
+        {% include "columns_2" %}
+        {% else %}
+        {% include "columns_1" %}
+        {% endif %}
+           
+    </div>
+    
+    {% else %}
+    <div class="container-fluid">
+<div class="row"> <!--
+<div class="action">
+  <div class="third">
+    <i class="fa fa-2x fa-user"></i>
+    <h3>I'm New</h3>
+  </div>
+  <div class="third">
+    <i class="fa fa-2x fa-facebook" style="display:inline-block;margin-right:10px;"></i>
+    <i class="fa fa-2x fa-twitter" style="display:inline-block;"></i>
+    <h3>Connect With Peniel</h3>
+  </div>
+	<div class="third">
+    <i class="fa fa-2x fa-map-marker"></i>
+    <h3>Directions + Info</h3>
+  </div>
+</div><!--End Action Div-->
+  </div>
+</div>
+    
+    <div class="main-container" id="middle" style="margin-top:0px; margin-bottom:0px;">
+      <div class="main container-fluid clearfix {% if site.has_background_image? %}well well-lg{% endif %}">
+        
+        
+      
+        {% if request.is_sidebar? %}
+        {% include "columns_2" %}
+        {% else %}
+        {% include "columns_1" %}
+        {% endif %}
+      </div>
+      <!-- .main -->
+    </div>
+    <!-- .main-container -->
+    
+        {% endif %}
+    
+        {% if page.is_homepage? == true %}
+
+    <footer>
+      <div class="container {% if site.has_background_image? %}well well-lg{% endif %}">
+        <div class="facebook-feed" style="margin:10px auto; text-align:center;max-width:350px;">
+        <div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+        <div class="fb-page" data-href="https://www.facebook.com/PenielChurchNorwich/" data-tabs="timeline" data-small-header="true" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="false"><div class="fb-xfbml-parse-ignore"><blockquote cite="https://www.facebook.com/PenielChurchNorwich/"><a href="https://www.facebook.com/PenielChurchNorwich/">Peniel Church</a></blockquote></div></div>
+        </div><!--end facebook feed-->
+        {{ content_for_footer }}
+
+        {% if site.footer_content.size > 0 %}
+        <div class="footer-text">{{ site.footer_content }}</div>
+        <hr/>
+        {% endif %}
+
+        <div class="row">
+
+          <div class="col-md-6 footer-left">
+            {% if request.logged_in? %}
+              Hi <a href="{{ request.current_signup.settings_url }}">{{ request.current_signup.name_or_email }}</a>. View your
+              {% if site.show_public_profiles? %}
+                <a href="{{ request.current_signup.profile_url }}">public profile</a>,
+              {% endif %}
+              <a href="{{ request.current_signup.settings_url }}">account settings</a>, or
+              <a href="{{ request.current_signup.logout_url }}">sign out</a>.
+            {% else %}
+              Sign in with <a href="{{ request.facebook_connect_url }}">Facebook</a>, <a
+                  href="{{ request.twitter_connect_url }}">Twitter</a> or <a href="/login">email</a>.
+            {% endif %}
+          </div>
+          <div class="col-md-6 footer-right text-right">
+            <!-- The NationBuilder link below is required. If it is removed, we may add it back ourselves.
+                 You can style it or move it in different ways, but please leave it in the footer. -->
+            Created with <a href="http://nationbuilder.com/">NationBuilder</a>
+          </div>
+
+        </div>
+      </div>
+      <!-- container -->
+      <p>Created with <a href="http://nationbuilder.com/">NationBuilder</a> by<a href="http://austincline.com/" target="_blank"> F <i class="fa fa-plus"></i> C</a></p>
+    </footer>
+    
+    {% else %}
+    
+    
+    
+     <footer id="inner-footer">
+       <div class="footer-bg">
+      <div class="container {% if site.has_background_image? %}well well-lg{% endif %}">
+              
+        {{ content_for_footer }}
+
+        {% if site.footer_content.size > 0 %}
+        <div class="footer-text">{{ site.footer_content }}</div>
+        <hr/>
+        {% endif %}
+
+        <div class="row">
+
+          <div class="col-md-6 footer-left">
+            {% if request.logged_in? %}
+              Hi <a href="{{ request.current_signup.settings_url }}">{{ request.current_signup.name_or_email }}</a>. View your
+              {% if site.show_public_profiles? %}
+                <a href="{{ request.current_signup.profile_url }}">public profile</a>,
+              {% endif %}
+              <a href="{{ request.current_signup.settings_url }}">account settings</a>, or
+              <a href="{{ request.current_signup.logout_url }}">sign out</a>.
+            {% else %}
+              Sign in with <a href="{{ request.facebook_connect_url }}">Facebook</a>, <a
+                  href="{{ request.twitter_connect_url }}">Twitter</a> or <a href="/login">email</a>.
+            {% endif %}
+          </div>
+          <div class="col-md-6 footer-right text-right">
+            <!-- The NationBuilder link below is required. If it is removed, we may add it back ourselves.
+                 You can style it or move it in different ways, but please leave it in the footer. -->
+            Created with <a href="http://nationbuilder.com/">NationBuilder</a>
+          </div>
+
+        </div>
+      </div>
+      <!-- container -->
+       </div><!--end footer bg-->
+       <p>Created with <a href="http://nationbuilder.com/">NationBuilder</a> by<a href="http://austincline.com/" target="_blank"> F <i class="fa fa-plus"></i> C</a></p>
+    </footer>
+    
+    {% endif %}
+
+    {% if site.has_background_image? %}
+      <!--[if lt IE 9]>
+      <script type="text/javascript" src="/javascripts/jquery.backstretch.min.js"></script>
+      <script type="text/javascript">
+        jQuery.backstretch("{{ site.background_image_url }}", {speed: 0});
+      </script>
+      <![endif]-->
+      <style>
+        body {
+          background: url('{{ site.background_image_url }}') no-repeat center center fixed;
+          -webkit-background-size: cover;
+          -moz-background-size: cover;
+          -o-background-size: cover;
+          background-size: cover;
+        }
+    </style>
+    {% endif %}
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="bootstrap.js"></script>
+    <script src="jquery.magnific-popup.min.js"></script>
+    
+    <script type="text/javascript">
+  jQuery(document).ready(function($) {
+$('.magnific-youtube, .magnific-vimeo').magnificPopup({
+  disableOn: 700,
+  type: 'iframe',
+  mainClass: 'mfp-fade',
+  removalDelay: 300,
+  preloader: false,
+  fixedContentPos: false
+});
+});
+    </script>
+    
+    <style>.mfp-iframe-holder .mfp-content {
+    line-height: 0;
+    width: 100%;
+    max-width: 900px;
+}
+    </style>
+
+  </body>
+</html>
+

@@ -1,0 +1,22 @@
+<div class="container">
+<div class="row">
+  <div class="title">
+	<div class="section-sermon">
+							<h2 class="section-title">Sermons</h2>
+							<p class="section-description">
+                Our church meets Sunday mornings at 9:30AM and Wednesday evenings at 6:00PM. You can find our latest sermons below.
+							</p><!-- /.section-description -->
+						</div><!-- /.section-head -->
+<div class="col-xs-12">
+{% for post in page.blog.most_recent_blog_posts limit:4 offset:0 %}
+ <div class="blog-latest-item">
+<div class ="title"><a href="{{ post.url }}">{{ post.headline }}</a></div>
+<div class="byline">{{ post.published_at | date: '%b %d, %Y' }}</div>
+<div class="blog_teaser">{{ post.blog_post.content | strip_html | truncatewords:50 }}</div>
+<div class="continue_reading"><a class="link-arrow" href="{{ post.url }}">Watch</a></div><hr />
+</div>
+{% endfor %}
+  </div>
+  </div>
+</div>
+</div>

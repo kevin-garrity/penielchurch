@@ -1,0 +1,24 @@
+<div class="upcoming_events_wrapper">
+	<div class="container">  
+    <div class="event-home-title">
+        <h2 class="content-title">Upcoming Events</h2>
+      <p class="content-description">
+        We create events aiming to spear the voice for children and gather for support. Please update with our events and confirm your presence.
+      </p>
+    </div>
+    {% for event in page.calendar.events_upcoming limit:2 offset:0 %} 
+      <div class="event-latest-item">
+        <div><a href={{ event.url }}><h3>{{ event.headline }}</h3></a></div> 
+        <div class=“padtopless”></div>
+        <div class=““event_teaser””> 
+        {{ event.event.content | strip_html | truncatewords: 30 }}
+        </div> 
+        <div class=“padtopmore”></div>
+        <div class=““continue_reading””>
+        <a href={{ event.url }}>RSVP Now!</a>
+        </div>
+      </div>
+    {% endfor %} 
+    <div style="clear:both"></div>
+  </div>
+</div>
